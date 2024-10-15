@@ -137,7 +137,7 @@ export async function getMultipleBlockData(
     doLog(`[funnel] all block requests failed`);
     const reason = (blockResults[0] as PromiseRejectedResult).reason;
     if (reason instanceof Error && reason.message === 'Invalid JSON RPC response: {}') {
-      // this error often happens on Aribtrum's RPC endpoint. It seems to maybe be a bug in handling batched requests
+      // this error often happens on Arbitrum's RPC endpoint. It seems to maybe be a bug in handling batched requests
       // where rate limit errors for batch requests instead just get converted to {}
       // that then maybe throws an error due to https://github.com/web3/web3.js/blob/1.x/packages/web3-core-requestmanager/src/index.js#L207
       const timeout = 60 * 1000; // 1 minute - the time of Arbitrum's rate limit. Not sure if other chains might have a different limit time
